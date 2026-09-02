@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpeakMate AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1B2B29;--paper:#F5F2EC;--panel:#FFF;--sage:#3E6259;--sage-dim:#5B7C72;--amber:#D98A2B;--amber-soft:#F3DDB8;--line:#DCD5C6;--err:#B4483B;--radius:14px}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,sans-serif;line-height:1.5}h1,h2,h3{font-family:Fraunces,serif;font-weight:500;letter-spacing:-.01em}button{font-family:inherit;cursor:pointer}
+#app{max-width:720px;margin:auto;min-height:100vh;display:flex;flex-direction:column}.screen{padding:36px 24px 48px;flex:1;display:flex;flex-direction:column}
+.top-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 0}.logo{font-family:Fraunces,serif;font-weight:600;font-size:16px}.link-btn,.btn-ghost{background:none;color:var(--sage-dim);text-decoration:underline;text-underline-offset:3px;border:0;font-size:13px}
+.btn-primary{background:var(--sage);color:#fff;border:0;padding:14px 28px;border-radius:999px;font-size:15px;font-weight:600}.btn-primary:hover{background:#324f47}.btn-primary:disabled{opacity:.5;cursor:not-allowed}.btn-secondary{background:transparent;color:var(--sage);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;border:1.5px solid var(--sage)}
+.hero{padding-top:12px}.kicker{color:var(--amber);font-size:13px;font-weight:600;margin-bottom:8px}.hero h1{font-size:44px;margin:0 0 6px;line-height:1.05}.hero .sub{font-size:19px;color:var(--sage);margin:0 0 18px;font-family:Fraunces,serif}.lede{font-size:16px;color:#4A4F49;max-width:52ch;margin:0 0 28px}
+.steps{display:flex;flex-direction:column;gap:14px;margin:8px 0 32px;padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}.step{display:flex;gap:14px;align-items:flex-start}.step .n{width:26px;height:26px;border-radius:50%;background:var(--amber-soft);color:#7A4E10;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}.disclosure{font-size:13px;color:#6B7268;border-top:1px solid var(--line);padding-top:16px;margin-top:8px}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.scenario-card{background:var(--panel);border:1.5px solid var(--line);border-radius:var(--radius);padding:18px;text-align:left}.scenario-card:hover{border-color:var(--sage);transform:translateY(-2px)}.scenario-card .emoji{font-size:26px}.scenario-card h3{font-size:17px;margin:8px 0 4px}.scenario-card p{font-size:13.5px;color:#666B62;margin:0}
+.convo-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.avatar-wrap{display:flex;align-items:center;gap:14px}.avatar{width:56px;height:56px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-size:26px;transition:.25s;flex-shrink:0}.avatar.listening{box-shadow:0 0 0 6px rgba(62,98,89,.15)}.avatar.thinking{animation:pulse 1.1s ease-in-out infinite}.avatar.speaking{box-shadow:0 0 0 6px rgba(217,138,43,.18)}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.avatar-meta .name{font-weight:600;font-size:15px}.avatar-meta .status{font-size:12.5px;color:var(--sage-dim)}.progress{font-size:12.5px;color:#7A8177;font-weight:600}
+.transcript{flex:1;display:flex;flex-direction:column;gap:12px;overflow-y:auto;padding:4px 2px 16px;min-height:260px}.bubble{max-width:82%;padding:12px 16px;border-radius:16px;font-size:15px;overflow-wrap:anywhere}.bubble.ai{background:var(--panel);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}.bubble.user{background:var(--sage);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}.thinking-dots{background:var(--panel);border:1px solid var(--line);align-self:flex-start;color:#8B9187}.composer{border-top:1px solid var(--line);padding-top:14px;margin-top:8px}.composer-row{display:flex;gap:8px;align-items:center}.composer textarea{flex:1;resize:none;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:15px Inter,sans-serif;background:var(--panel);color:var(--ink);min-width:0}.composer textarea:focus{outline:none;border-color:var(--sage)}.mic-btn{width:46px;height:46px;border-radius:50%;background:var(--amber-soft);color:#7A4E10;font-size:19px;border:0;flex-shrink:0}.mic-btn.recording{background:var(--err);color:#fff}.composer-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:10px}.hint{font-size:12px;color:#8B9187}.demo-banner{background:#FBF0D9;border:1px solid var(--amber-soft);color:#7A4E10;font-size:12.5px;padding:8px 14px;border-radius:10px;margin-bottom:16px}.error-banner{background:#FBEAE7;border:1px solid #EFC4BC;color:var(--err);font-size:12.5px;padding:8px 14px;border-radius:10px;margin-bottom:16px}
+.fb-hero{text-align:center;padding:8px 0 20px}.fb-hero h1{font-size:30px;margin:6px 0 4px}.score-ring{font-size:40px;font-weight:700;color:var(--sage);font-family:Fraunces,serif}.metrics,.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}.metric,.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.metric .label,.stat .lbl{font-size:12.5px;color:#7A8177;margin-bottom:4px}.metric .val{font-size:20px;font-weight:700;font-family:Fraunces,serif}.metric .bar{height:5px;background:#EAE5D8;border-radius:3px;margin-top:8px;overflow:hidden}.metric .bar-fill{height:100%;background:var(--sage)}.fb-block{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:12px}.fb-block h3{font-size:14px;margin:0 0 6px;color:var(--sage)}.fb-block p{margin:0;font-size:15px}.basis-note{font-size:11.5px;color:#9A9186;margin-top:20px}
+.stars{display:flex;gap:6px;font-size:30px;margin:10px 0 20px}.stars span{cursor:pointer;opacity:.3}.stars span.active{opacity:1}.radio-row{display:flex;gap:10px;margin:8px 0 20px}.radio-row button{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel);font-weight:600;font-size:14px}.radio-row button.sel{border-color:var(--sage);background:#E9EFEC;color:var(--sage)}textarea.survey-box{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px;font:14px Inter,sans-serif;min-height:70px;margin-bottom:20px}
+.stat .num{font-size:26px;font-weight:700;font-family:Fraunces,serif;color:var(--sage)}.scenario-stats{margin-top:20px}.scenario-stat{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
+@media(max-width:520px){.scenario-grid{grid-template-columns:1fr}.hero h1{font-size:38px}.composer-row{align-items:stretch}.composer-row .btn-primary{padding:11px 15px}.mic-btn{width:44px;height:44px}.bubble{max-width:90%}.screen{padding-left:18px;padding-right:18px}.top-nav{padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body><div id="app"></div>
+<script>
+const SCENARIOS=[
+{id:'casual',emoji:'💬',title:'Casual Conversation',desc:'Talk about everyday life, like chatting with a friend.',opener:"Hi! I'm Maya. So, tell me — how has your day been going?",system:"You are Maya, a friendly AI conversation partner helping someone practice casual spoken English. Keep it light and relaxed, ask one question at a time, react warmly, and keep replies to 1-2 short sentences. Never correct grammar mid-conversation.",demoTurns:["That's great! What was the best part of it?","Nice — do you usually spend your evenings like that, or was today different?","What are you looking forward to this week?","Sounds fun! Anything you're a little nervous about too?"]},
+{id:'interview',emoji:'💼',title:'Job Interview',desc:'Practice answering common interview questions with confidence.',opener:"Hello, thanks for coming in today. To start — could you tell me a bit about yourself?",system:"You are Maya, a friendly professional job interviewer helping someone practice English. Ask one common interview question at a time, respond briefly and encouragingly, then ask a natural follow-up. Never correct grammar mid-conversation. Keep replies to 1-2 short sentences.",demoTurns:["Thanks for sharing that. What would you say is your biggest strength?","Can you describe a challenge you faced and how you handled it?","Why are you interested in this kind of role?","Where do you see yourself in a few years?"]},
+{id:'discussion',emoji:'🎓',title:'Group Discussion',desc:'Practice sharing opinions on a discussion topic.',opener:"Let's dig into a topic together: do you think social media has a positive or negative impact on students?",system:"You are Maya, a friendly discussion partner helping someone practice giving spoken opinions in English. Ask one open question at a time, briefly react, gently offer a counterpoint or related angle, and ask a follow-up. Never correct grammar mid-conversation. Keep replies to 1-2 short sentences.",demoTurns:["Interesting take. What about the flip side — do you see any downsides too?","Do you think schools should teach students how to use it responsibly?","Has your own use of social media changed over time?","What's one rule you'd set for yourself around it?"]},
+{id:'travel',emoji:'✈️',title:'Everyday Situation',desc:'Practice a real-life scenario, like checking into a hotel.',opener:"Welcome! I'm at the front desk. How can I help you check in today?",system:"You are Maya, a hotel front-desk staff member helping someone practice everyday spoken English. Stay in role, ask one natural situational question at a time, and keep replies to 1-2 short sentences. Never correct grammar mid-conversation.",demoTurns:["Of course. Could I get your name for the reservation?","Perfect, I found it. Would you like a room with a city view or a garden view?","Will you need any help with luggage or directions to your room?","Wonderful — is there anything else I can help you with?"]}
+];
+const MAX_TURNS=5;
+
+let state={view:'landing',scenario:null,transcript:[],turn:0,avatarState:'idle',demoMode:false,loading:false,feedback:null,survey:{stars:0,again:null,comment:''},recording:false,inputText:'',sessionId:null,completed:false,submitted:false};
+let recognition=null;
+let recognitionSupported=false;
+try{
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR){
+    recognition=new SR();
+    recognition.continuous=false;
+    recognition.interimResults=true;
+    recognition.lang='en-IN';
+    recognition.maxAlternatives=1;
+    recognitionSupported=true;
+  }
+}catch(e){
+  recognition=null;
+  recognitionSupported=false;
+}
+const app=document.getElementById('app');
+const anonKey='speakmate_anon_id';
+function anonId(){try{let x=localStorage.getItem(anonKey);if(!x){x='anon_'+crypto.randomUUID();localStorage.setItem(anonKey,x)}return x}catch(e){return 'anon_session'}}
+const anonymousUserId=anonId();
+let renderedView=null;
+
+function event(name,meta={}){fetch('/api/events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event_name:name,session_id:meta.sessionId||state.sessionId,scenario:meta.scenario||state.scenario?.id||null,metadata:{...meta,anonymousUserId}})}).catch(()=>{})}
+function render(){ROUTES[state.view]()}
+const ROUTES={landing:renderLanding,scenario:renderScenario,conversation:renderConversation,feedback:renderFeedback,survey:renderSurvey,analytics:renderAnalytics,thanks:renderThanks};
+
+function nav(){return `<div class="top-nav"><div class="logo">SpeakMate AI</div><button class="link-btn" onclick="goAnalytics()">Product Pulse</button></div>`}
+function renderLanding(){if(renderedView!=='landing'){event('landing_viewed');renderedView='landing'}app.innerHTML=nav()+`<div class="screen hero"><div class="kicker">AI speaking practice</div><h1>Practice real conversations.</h1><div class="sub">Speak with confidence.</div><p class="lede">Practice English through short conversations with an AI speaking partner, Maya. Choose a situation, start talking, and get personalized feedback after every session.</p><button class="btn-primary" onclick="goScenario()">Start Practicing</button><button class="btn-ghost" style="margin-top:10px" onclick="testMayaVoice()">🔊 Test Maya Voice</button><div class="steps"><div class="step"><div class="n">1</div><div>Choose a real-life situation to practice.</div></div><div class="step"><div class="n">2</div><div>Talk with Maya by voice or text.</div></div><div class="step"><div class="n">3</div><div>Get concise feedback and decide whether to practice again.</div></div></div><div class="disclosure">You'll be practicing with an AI conversation partner, not a human. Scores are based on transcript patterns, not pronunciation or accent.</div></div>`}
+function goScenario(){state.view='scenario';render()}
+async function goAnalytics(){state.view='analytics';render()}
+function renderScenario(){if(renderedView!=='scenario'){event('scenario_view');renderedView='scenario'}app.innerHTML=nav()+`<div class="screen"><h2 style="font-size:24px;margin:0 0 4px">Choose a situation</h2><p style="color:#666B62;font-size:14.5px;margin:0">Pick the kind of conversation you want to practice.</p><div class="scenario-grid">${SCENARIOS.map(s=>`<button class="scenario-card" onclick="startScenario('${s.id}')"><div class="emoji">${s.emoji}</div><h3>${s.title}</h3><p>${s.desc}</p></button>`).join('')}</div></div>`}
+function startScenario(id){const s=SCENARIOS.find(x=>x.id===id);state={...state,scenario:s,transcript:[{role:'ai',text:s.opener}],turn:0,avatarState:'idle',demoMode:false,loading:false,feedback:null,survey:{stars:0,again:null,comment:''},recording:false,inputText:'',sessionId:'sess_'+crypto.randomUUID(),completed:false,submitted:false};event('scenario_selected',{scenario:id,sessionId:state.sessionId});event('session_started',{scenario:id,sessionId:state.sessionId});state.view='conversation';render();speakMaya(s.opener);}
+function renderConversation(){const s=state.scenario;app.innerHTML=`<div class="screen"><div class="convo-header"><div class="avatar-wrap"><div class="avatar ${state.avatarState}">${avatarEmoji()}</div><div class="avatar-meta"><div class="name">Maya — AI Speaking Partner</div><div class="status">${statusLabel()}</div></div></div><div class="progress">Turn ${Math.min(state.turn+1,MAX_TURNS)} / ${MAX_TURNS}</div></div>${state.demoMode?`<div class="demo-banner">Demo Mode — AI responses are simulated for this conversation.</div>`:''}<div class="transcript" id="transcript">${state.transcript.map(t=>`<div class="bubble ${t.role==='ai'?'ai':'user'}">${escapeHtml(t.text)}</div>`).join('')}${state.loading?`<div class="bubble thinking-dots">Maya is thinking…</div>`:''}</div><div class="composer"><div class="composer-row"><textarea id="inputBox" rows="1" placeholder="Type your response…" ${state.loading?'disabled':''} oninput="state.inputText=this.value"></textarea><button class="mic-btn ${state.recording?'recording':''}" onclick="toggleMic()" ${state.loading?'disabled':''}>${state.recording?'⏹':'🎤'}</button><button class="btn-primary" onclick="sendResponse()" ${state.loading?'disabled':''}>Send</button></div><div class="composer-foot"><div class="hint">${recognitionSupported?'Tap 🎤 to speak, or type instead.':'Microphone unavailable in this browser — type your response instead.'}</div><button class="end-link btn-ghost" onclick="endSessionEarly()">End session</button></div></div></div>`;const t=document.getElementById('transcript');if(t)t.scrollTop=t.scrollHeight;const b=document.getElementById('inputBox');if(b){b.value=state.inputText;b.focus()}}
+function avatarEmoji(){return state.avatarState==='listening'?'👂':state.avatarState==='thinking'?'🤔':state.avatarState==='speaking'?'🗣️':'🙂'}
+function statusLabel(){return state.avatarState==='listening'?'Listening…':state.avatarState==='thinking'?'Thinking…':state.avatarState==='speaking'?'Speaking…':'Ready when you are'}
+function toggleMic() {
+  if (!recognitionSupported || !recognition) {
+    alert("Voice input is not supported in this browser. Please use Google Chrome.");
+    return;
+  }
+
+  if (state.recording) {
+    try {
+      recognition.stop();
+    } catch (e) {}
+
+    state.recording = false;
+    state.avatarState = 'idle';
+    render();
+    return;
+  }
+
+  state.recording = true;
+  state.avatarState = 'listening';
+  render();
+
+  recognition.onstart = () => {
+    console.log("Speech recognition started");
+    state.recording = true;
+    state.avatarState = 'listening';
+    render();
+  };
+
+  recognition.onresult = (event) => {
+    let transcript = '';
+
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      transcript += event.results[i][0].transcript;
+    }
+
+    transcript = transcript.trim();
+
+    if (transcript) {
+      console.log("Speech detected:", transcript);
+
+      state.inputText = transcript;
+
+      state.recording = false;
+      state.avatarState = 'idle';
+
+      render();
+    }
+  };
+
+  recognition.onerror = (event) => {
+    console.warn("Speech recognition error:", event.error);
+
+    state.recording = false;
+    state.avatarState = 'idle';
+    render();
+
+    if (event.error === 'no-speech') {
+      console.log("No speech detected. Please try speaking closer to the microphone.");
+    } else if (event.error === 'not-allowed') {
+      alert("Microphone permission was denied. Please allow microphone access in Chrome.");
+    } else if (event.error === 'audio-capture') {
+      alert("Chrome could not access your microphone. Please check your microphone device.");
+    }
+  };
+
+  recognition.onend = () => {
+    console.log("Speech recognition ended");
+
+    state.recording = false;
+    state.avatarState = 'idle';
+    render();
+  };
+
+  try {
+    recognition.start();
+    console.log("Starting microphone...");
+  } catch (error) {
+    console.warn("Could not start speech recognition:", error);
+
+    state.recording = false;
+    state.avatarState = 'idle';
+    render();
+  }
+}
+
+function speakMaya(text){
+  if(!text||!('speechSynthesis' in window))return Promise.resolve(false);
+
+  return new Promise(resolve=>{
+    try{
+      window.speechSynthesis.cancel();
+
+      const utterance=new SpeechSynthesisUtterance(String(text));
+      utterance.lang='en-US';
+      utterance.rate=0.92;
+      utterance.pitch=1.0;
+      utterance.volume=1.0;
+
+      const chooseVoice=()=>{
+        const voices=window.speechSynthesis.getVoices();
+        const voice=voices.find(v=>/^en(-|_)(US|GB)/i.test(v.lang))
+          || voices.find(v=>/^en/i.test(v.lang));
+        if(voice) utterance.voice=voice;
+
+        state.avatarState='speaking';
+        render();
+
+        utterance.onend=()=>{
+          state.avatarState='idle';
+          render();
+          resolve(true);
+        };
+        utterance.onerror=(e)=>{
+          console.warn('Speech synthesis error:',e);
+          state.avatarState='idle';
+          render();
+          resolve(false);
+        };
+
+        window.speechSynthesis.resume();
+        window.speechSynthesis.speak(utterance);
+      };
+
+      // Chrome may load voices asynchronously.
+      if(window.speechSynthesis.getVoices().length){
+        chooseVoice();
+      }else{
+        const once=()=>{
+          window.speechSynthesis.removeEventListener('voiceschanged',once);
+          chooseVoice();
+        };
+        window.speechSynthesis.addEventListener('voiceschanged',once);
+        setTimeout(()=>{
+          window.speechSynthesis.removeEventListener('voiceschanged',once);
+          if(!utterance.voice) chooseVoice();
+        },800);
+      }
+    }catch(e){
+      console.warn('Speech synthesis start error:',e);
+      state.avatarState='idle';
+      render();
+      resolve(false);
+    }
+  });
+}
+
+function testMayaVoice(){
+  speakMaya('Hello! I am Maya, your AI speaking partner. If you can hear this, voice output is working.');
+}
+async function sendResponse(){const text=(state.inputText||'').trim();if(!text||state.loading||state.completed)return;state.transcript.push({role:'user',text});event('user_response',{scenario:state.scenario.id,sessionId:state.sessionId,turn:state.turn+1});state.inputText='';state.turn++;state.loading=true;state.avatarState='thinking';render();if(state.turn>=MAX_TURNS){await finishSession();return}try{let reply;if(state.demoMode){await sleep(550);reply=state.scenario.demoTurns[(state.turn-1)%state.scenario.demoTurns.length]}else{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:state.scenario.system,messages:state.transcript.map(t=>({role:t.role==='ai'?'assistant':'user',content:t.text}))})});if(!r.ok)throw new Error('AI unavailable');reply=(await r.json()).reply}state.transcript.push({role:'ai',text:reply});event('avatar_interaction',{scenario:state.scenario.id,sessionId:state.sessionId,turn:state.turn});state.loading=false;render();await speakMaya(reply)}catch(e){state.demoMode=true;await sleep(350);const reply=state.scenario.demoTurns[(state.turn-1)%state.scenario.demoTurns.length];state.transcript.push({role:'ai',text:reply});event('avatar_interaction',{scenario:state.scenario.id,sessionId:state.sessionId,turn:state.turn,demo:true});state.loading=false;render();await speakMaya(reply)}state.avatarState='idle';render()}
+async function endSessionEarly(){if(state.loading)return;event('session_abandoned',{scenario:state.scenario?.id,sessionId:state.sessionId,turns:state.turn});state.view='scenario';render()}
+async function finishSession(){
+  if(state.completed)return;
+
+  state.completed=true;
+
+  event('session_completed',{
+    scenario:state.scenario.id,
+    sessionId:state.sessionId,
+    turns:state.turn
+  });
+
+  state.loading=true;
+  state.avatarState='thinking';
+  render();
+
+  let fb=null;
+
+  // Collect only the user's actual responses
+  const userResponses=state.transcript
+    .filter(t=>t.role==='user')
+    .map((t,i)=>`Response ${i+1}: ${t.text}`)
+    .join('\n');
+
+  try{
+    const feedbackSystem=`
+You are an expert but encouraging English speaking coach.
+
+Analyze the user's actual responses from an English conversation practice session.
+
+IMPORTANT:
+- Base every score and comment ONLY on the user's responses.
+- Do not give generic feedback.
+- Do not use the same feedback for every user.
+- Mention specific patterns or examples from what the user actually said.
+- Assess ONLY transcript-based language performance.
+- Do NOT claim to assess pronunciation, accent, tone, confidence, or speaking speed.
+- Scores must be integers from 1 to 10.
+- Fluency means how naturally and continuously the written responses communicate ideas.
+- Grammar means grammatical correctness and consistency.
+- Vocabulary means range and appropriateness of words.
+- Clarity means how clearly the ideas are expressed.
+
+Return ONLY valid JSON in exactly this structure:
+
+{
+  "fluency": 1,
+  "grammar": 1,
+  "vocabulary": 1,
+  "clarity": 1,
+  "wentWell": "Specific positive observation based on the user's actual responses.",
+  "improve": "One specific improvement based on the user's actual responses.",
+  "example": "A short improved example based on something the user actually said."
+}
+`;
+
+    const r=await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        system:feedbackSystem,
+        messages:[
+          {
+            role:'user',
+            content:
+              `Here are the user's actual responses:\n\n${userResponses}\n\nAnalyze these responses and return the requested JSON.`
+          }
+        ],
+        jsonMode:true
+      })
+    });
+
+    if(!r.ok){
+      throw new Error(`Feedback API returned ${r.status}`);
+    }
+
+    const data=await r.json();
+
+    console.log('Raw feedback response:',data.reply);
+
+    const cleaned=String(data.reply||'')
+      .replace(/```json/gi,'')
+      .replace(/```/g,'')
+      .trim();
+
+    fb=JSON.parse(cleaned);
+
+  }catch(e){
+    console.error('Feedback generation failed:',e);
+
+    // Do NOT silently show fake fixed feedback.
+    fb=null;
+  }
+
+  const valid=
+    fb &&
+    Number.isInteger(Number(fb.fluency)) &&
+    Number.isInteger(Number(fb.grammar)) &&
+    Number.isInteger(Number(fb.vocabulary)) &&
+    Number.isInteger(Number(fb.clarity)) &&
+    Number(fb.fluency)>=1 && Number(fb.fluency)<=10 &&
+    Number(fb.grammar)>=1 && Number(fb.grammar)<=10 &&
+    Number(fb.vocabulary)>=1 && Number(fb.vocabulary)<=10 &&
+    Number(fb.clarity)>=1 && Number(fb.clarity)<=10 &&
+    typeof fb.wentWell==='string' &&
+    fb.wentWell.trim() &&
+    typeof fb.improve==='string' &&
+    fb.improve.trim() &&
+    typeof fb.example==='string' &&
+    fb.example.trim();
+
+  if(valid){
+
+    fb.fluency=Number(fb.fluency);
+    fb.grammar=Number(fb.grammar);
+    fb.vocabulary=Number(fb.vocabulary);
+    fb.clarity=Number(fb.clarity);
+
+    fb.overall=Math.round(
+      (
+        fb.fluency+
+        fb.grammar+
+        fb.vocabulary+
+        fb.clarity
+      )/4*10
+    )/10;
+
+  }else{
+
+    // A dynamic fallback based on the user's actual transcript.
+    // This is NOT presented as AI-generated feedback.
+    const responseCount=state.transcript.filter(t=>t.role==='user').length;
+    const wordCount=userResponses.trim()
+      ? userResponses.trim().split(/\s+/).length
+      : 0;
+
+    const avgWords=responseCount
+      ? Math.round(wordCount/responseCount)
+      : 0;
+
+    fb={
+      fluency:avgWords>=12?7:avgWords>=7?6:5,
+      grammar:6,
+      vocabulary:avgWords>=15?7:6,
+      clarity:avgWords>=8?7:6,
+      wentWell:
+        `You completed ${responseCount} response${responseCount===1?'':'s'} and communicated your ideas in the conversation.`,
+      improve:
+        avgWords<8
+          ? 'Try expanding your answers with one or two supporting details.'
+          : 'Try connecting your ideas with more varied sentence structures.',
+      example:
+        avgWords<8
+          ? 'Instead of a short answer, add a reason or example to explain your idea.'
+          : 'I enjoyed the experience because it gave me a chance to learn something new.'
+    };
+
+    fb.overall=Math.round(
+      (
+        fb.fluency+
+        fb.grammar+
+        fb.vocabulary+
+        fb.clarity
+      )/4*10
+    )/10;
+
+    state.demoMode=true;
+  }
+
+  state.feedback=fb;
+  state.loading=false;
+  state.avatarState='idle';
+  state.view='feedback';
+  render();
+}
+function renderFeedback(){const f=state.feedback;app.innerHTML=`<div class="screen">${state.demoMode?`<div class="demo-banner">Demo Mode — this feedback used simulated scoring.</div>`:''}<div class="fb-hero"><div style="font-size:30px">🎉</div><h1>Great job!</h1><p style="color:#666B62;font-size:14.5px">You completed your conversation with Maya.</p><div class="score-ring">${f.overall} / 10</div></div><div class="metrics">${metricCard('Fluency',f.fluency)}${metricCard('Grammar',f.grammar)}${metricCard('Vocabulary',f.vocabulary)}${metricCard('Clarity',f.clarity)}</div><div class="fb-block"><h3>👍 What you did well</h3><p>${escapeHtml(f.wentWell)}</p></div><div class="fb-block"><h3>🎯 One thing to improve</h3><p>${escapeHtml(f.improve)}</p></div><div class="fb-block"><h3>💡 Try saying it this way</h3><p>${escapeHtml(f.example)}</p></div><div class="basis-note">Scores are based on patterns in your written responses during this conversation — not a measurement of pronunciation, tone, accent, confidence, or speaking speed.</div><div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap"><button class="btn-primary" onclick="goSurvey()">Give Feedback</button><button class="btn-secondary" onclick="goScenario()">Practice Again</button></div></div>`}
+function metricCard(label,v){return `<div class="metric"><div class="label">${label}</div><div class="val">${v}/10</div><div class="bar"><div class="bar-fill" style="width:${v*10}%"></div></div></div>`}
+function goSurvey(){state.view='survey';render()}
+function renderSurvey(){app.innerHTML=`<div class="screen"><h2 style="font-size:22px;margin:0 0 4px">How was your session?</h2><p style="color:#666B62;font-size:14.5px">Your answers help us improve SpeakMate.</p><div style="margin-top:18px"><div style="font-weight:600;font-size:14px">How useful was this session?</div><div class="stars">${[1,2,3,4,5].map(i=>`<span class="${state.survey.stars>=i?'active':''}" onclick="setStars(${i})">★</span>`).join('')}</div></div><div><div style="font-weight:600;font-size:14px">Would you practice with SpeakMate again?</div><div class="radio-row">${['Yes','Maybe','No'].map(x=>`<button class="${state.survey.again===x?'sel':''}" onclick="setAgain('${x}')">${x}</button>`).join('')}</div></div><div><div style="font-weight:600;font-size:14px;margin-bottom:6px">What should we improve?</div><textarea class="survey-box" placeholder="Optional — tell us anything." oninput="state.survey.comment=this.value">${escapeHtml(state.survey.comment)}</textarea></div><button class="btn-primary" ${(!state.survey.stars||!state.survey.again)?'disabled':''} onclick="submitSurvey()">Submit</button></div>`}
+function setStars(i){state.survey.stars=i;render()}function setAgain(v){state.survey.again=v;render()}
+async function submitSurvey(){if(state.submitted)return;state.submitted=true;const payload={sessionId:state.sessionId,scenario:state.scenario?.id,rating:state.survey.stars,would_practice_again:state.survey.again,comment:state.survey.comment};try{await fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})}catch(e){}event('feedback_submitted',{sessionId:state.sessionId,scenario:state.scenario?.id});state.view='thanks';render()}
+function renderThanks(){app.innerHTML=`<div class="screen" style="justify-content:center;align-items:center;text-align:center"><div style="font-size:36px">🙌</div><h2>Thanks for the feedback!</h2><p style="color:#666B62;max-width:40ch">Every session helps us make SpeakMate better.</p><button class="btn-primary" onclick="goScenario()">Practice Again</button><button class="btn-ghost" style="margin-top:14px" onclick="state.view='landing';render()">Back to home</button></div>`}
+async function renderAnalytics(){app.innerHTML=nav()+`<div class="screen"><h2 style="font-size:22px;margin:0">Product Pulse</h2><p style="color:#666B62;font-size:13.5px">Live usage and feedback from SpeakMate testers.</p><div id="pulse">Loading…</div></div>`;try{const r=await fetch('/api/analytics');if(!r.ok)throw new Error();const d=await r.json();document.getElementById('pulse').innerHTML=`<div class="stat-grid"><div class="stat"><div class="num">${d.sessionsStarted}</div><div class="lbl">Sessions Started</div></div><div class="stat"><div class="num">${d.sessionsCompleted}</div><div class="lbl">Sessions Completed</div></div><div class="stat"><div class="num">${d.completionRate}%</div><div class="lbl">Completion Rate</div></div><div class="stat"><div class="num">${d.avgRating}</div><div class="lbl">Avg Rating / 5</div></div><div class="stat"><div class="num">${d.wouldAgain}%</div><div class="lbl">Would Practice Again</div></div><div class="stat"><div class="num">${d.feedbackCount}</div><div class="lbl">Feedback Responses</div></div></div><div class="scenario-stats"><h3>Scenario Usage</h3>${SCENARIOS.map(s=>`<div class="scenario-stat"><span>${s.emoji} ${s.title}</span><strong>${d.scenarios[s.id]||0}</strong></div>`).join('')}</div>${!d.sessionsStarted?'<div class="demo-banner" style="margin-top:20px">No sessions yet — metrics will populate as testers use SpeakMate.</div>':''}<button class="btn-secondary" style="margin-top:22px" onclick="goScenario()">Back to practicing</button>`}catch(e){document.getElementById('pulse').innerHTML='<div class="demo-banner">Validation metrics are temporarily unavailable. The practice experience is still usable.</div><button class="btn-secondary" onclick="goScenario()">Back to practicing</button>'}}
+function escapeHtml(str){const d=document.createElement('div');d.innerText=String(str??'');return d.innerHTML}function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+render();
+</script></body></html>
