@@ -67,12 +67,12 @@ app.post("/api/chat", async (req, res) => {
     if (!response.ok) {
       const errorText = await response.text();
 
+      // Log full details server-side only; never forward upstream error
+      // bodies (which can contain internal/account details) to the client.
       console.error("Gemini API error:", response.status, errorText);
 
-      return res.status(response.status).json({
-        error: "Gemini API error",
-        status: response.status,
-        details: errorText,
+      return res.status(502).json({
+        error: "Maya is temporarily unavailable. Please try again in a moment.",
       });
     }
 
