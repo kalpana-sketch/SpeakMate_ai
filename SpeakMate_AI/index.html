@@ -19,6 +19,10 @@
 .convo-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.avatar-wrap{display:flex;align-items:center;gap:14px}.avatar{width:56px;height:56px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-size:26px;transition:.25s;flex-shrink:0}.avatar.listening{box-shadow:0 0 0 6px rgba(62,98,89,.15)}.avatar.thinking{animation:pulse 1.1s ease-in-out infinite}.avatar.speaking{box-shadow:0 0 0 6px rgba(217,138,43,.18)}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}.avatar-meta .name{font-weight:600;font-size:15px}.avatar-meta .status{font-size:12.5px;color:var(--sage-dim)}.progress{font-size:12.5px;color:#7A8177;font-weight:600}
 .transcript{flex:1;display:flex;flex-direction:column;gap:12px;overflow-y:auto;padding:4px 2px 16px;min-height:260px}.bubble{max-width:82%;padding:12px 16px;border-radius:16px;font-size:15px;overflow-wrap:anywhere}.bubble.ai{background:var(--panel);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}.bubble.user{background:var(--sage);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}.thinking-dots{background:var(--panel);border:1px solid var(--line);align-self:flex-start;color:#8B9187}.composer{border-top:1px solid var(--line);padding-top:14px;margin-top:8px}.composer-row{display:flex;gap:8px;align-items:center}.composer textarea{flex:1;resize:none;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:15px Inter,sans-serif;background:var(--panel);color:var(--ink);min-width:0}.composer textarea:focus{outline:none;border-color:var(--sage)}.mic-btn{width:46px;height:46px;border-radius:50%;background:var(--amber-soft);color:#7A4E10;font-size:19px;border:0;flex-shrink:0}.mic-btn.recording{background:var(--err);color:#fff}.composer-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:10px}.hint{font-size:12px;color:#8B9187}.demo-banner{background:#FBF0D9;border:1px solid var(--amber-soft);color:#7A4E10;font-size:12.5px;padding:8px 14px;border-radius:10px;margin-bottom:16px}
 .fb-hero{text-align:center;padding:8px 0 20px}.fb-hero h1{font-size:30px;margin:6px 0 4px}.score-ring{font-size:40px;font-weight:700;color:var(--sage);font-family:Fraunces,serif}.metrics,.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}.metric,.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}.metric .label,.stat .lbl{font-size:12.5px;color:#7A8177;margin-bottom:4px}.metric .val{font-size:20px;font-weight:700;font-family:Fraunces,serif}.metric .bar{height:5px;background:#EAE5D8;border-radius:3px;margin-top:8px;overflow:hidden}.metric .bar-fill{height:100%;background:var(--sage)}.fb-block{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:12px}.fb-block h3{font-size:14px;margin:0 0 6px;color:var(--sage)}.fb-block p{margin:0;font-size:15px}.basis-note{font-size:11.5px;color:#9A9186;margin-top:20px}
+.fb-list{margin:0;padding-left:18px;font-size:15px}.fb-list li{margin-bottom:4px}
+.fb-details{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);margin-bottom:12px;overflow:hidden}.fb-details summary{cursor:pointer;padding:14px 18px;font-weight:600;font-size:14px;color:var(--sage);list-style:none}.fb-details summary::-webkit-details-marker{display:none}.fb-details summary::after{content:'▸';float:right;color:#9A9186;transition:transform .15s}.fb-details[open] summary::after{transform:rotate(90deg)}.fb-details-body{padding:0 18px 16px;display:flex;flex-direction:column;gap:10px}
+.correction-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px}.corr-row{display:flex;gap:8px;align-items:baseline;font-size:14px;margin-bottom:4px}.corr-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 7px;border-radius:999px;flex-shrink:0}.corr-tag.orig{background:#F3E4E0;color:var(--err)}.corr-tag.imp{background:#E9EFEC;color:var(--sage)}.corr-expl{margin:6px 0 0;font-size:12.5px;color:#7A8177}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}.chip{background:#E9EFEC;color:var(--sage);font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px}
 .stars{display:flex;gap:6px;font-size:30px;margin:10px 0 20px}.stars span{cursor:pointer;opacity:.3}.stars span.active{opacity:1}.radio-row{display:flex;gap:10px;margin:8px 0 20px}.radio-row button{flex:1;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel);font-weight:600;font-size:14px}.radio-row button.sel{border-color:var(--sage);background:#E9EFEC;color:var(--sage)}textarea.survey-box{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px;font:14px Inter,sans-serif;min-height:70px;margin-bottom:20px}
 .stat .num{font-size:26px;font-weight:700;font-family:Fraunces,serif;color:var(--sage)}.scenario-stats{margin-top:20px}.scenario-stat{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
 @media(max-width:520px){.scenario-grid{grid-template-columns:1fr}.hero h1{font-size:38px}.composer-row{align-items:stretch}.composer-row .btn-primary{padding:11px 15px}.mic-btn{width:44px;height:44px}.bubble{max-width:90%}.screen{padding-left:18px;padding-right:18px}.top-nav{padding-left:18px;padding-right:18px}}
@@ -57,6 +61,28 @@ function buildSystemPrompt(scenario,difficulty,englishOnly){
   }
   return parts.join('\n\n');
 }
+
+// Calibrates the post-session feedback prompt to the learner's chosen
+// difficulty, so a Beginner isn't penalized for simplicity and an Advanced
+// learner gets held to a higher, more nuanced standard.
+const DIFFICULTY_FEEDBACK_NOTE={
+  beginner:"The learner chose Beginner difficulty. Do not penalize simple vocabulary or short, simple sentences — that is appropriate at this level. Prioritize encouragement and basic correctness over sophistication.",
+  intermediate:"The learner chose Intermediate difficulty. Expect natural, moderately varied everyday English. Balance feedback between correctness and natural flow.",
+  advanced:"The learner chose Advanced difficulty. Give more detailed feedback on vocabulary variety, sentence sophistication, natural/idiomatic expression, precision, and nuance — hold this session to a higher standard than Beginner or Intermediate."
+};
+// Light, shared per-scenario focus notes so the feedback is scenario-relevant
+// without building a separate feedback system for every scenario.
+const SCENARIO_FEEDBACK_FOCUS={
+  casual:"natural conversational English, easy follow-up responses, and everyday expressions",
+  interview:"clearly explaining experience and answering questions directly, while sounding natural rather than overly rehearsed",
+  discussion:"expressing and explaining opinions, agreeing or disagreeing politely, and clarity of reasoning",
+  travel:"practical, polite, and clearly understandable requests",
+  dailylife:"natural, everyday description of routines and daily life",
+  college:"everyday academic communication — explaining ideas and asking questions clearly",
+  shopping:"clear, polite requests and practical back-and-forth",
+  social:"natural small talk and warm, easy conversational flow",
+  workplace:"professional but natural English — clear and concise communication"
+};
 
 let state={view:'landing',scenario:null,difficulty:'intermediate',englishOnly:false,transcript:[],turn:0,avatarState:'idle',demoMode:false,loading:false,feedback:null,survey:{stars:0,again:null,comment:''},recording:false,inputText:'',sessionId:null,completed:false,submitted:false};
 let recognition=null;
@@ -278,34 +304,57 @@ async function finishSession(){
     .join('\n');
 
   try{
+    const scenarioFocus=SCENARIO_FEEDBACK_FOCUS[state.scenario.id]||"natural, clear spoken English for this situation";
+    const difficultyNote=DIFFICULTY_FEEDBACK_NOTE[state.difficulty]||DIFFICULTY_FEEDBACK_NOTE.intermediate;
+    const englishOnlyLine=state.englishOnly?`\n- English Only Mode was active during this session, so the learner was encouraged to respond in English throughout.`:'';
+
     const feedbackSystem=`
-You are an expert but encouraging English speaking coach.
+You are an expert but encouraging English-speaking coach analyzing a learner's practice conversation.
 
-Analyze the user's actual responses from an English conversation practice session.
+This is spoken-English practice feedback, NOT a job-interview evaluation, resume review, or hiring assessment — even if the scenario was a job-interview role-play, judge only their English communication, never their interview performance, professionalism, or suitability for a role.
 
-IMPORTANT:
-- Base every score and comment ONLY on the user's responses.
-- Do not give generic feedback.
-- Do not use the same feedback for every user.
-- Mention specific patterns or examples from what the user actually said.
-- Assess ONLY transcript-based language performance.
-- Do NOT claim to assess pronunciation, accent, tone, confidence, or speaking speed.
-- Scores must be integers from 1 to 10.
-- Fluency means how naturally and continuously the written responses communicate ideas.
-- Grammar means grammatical correctness and consistency.
-- Vocabulary means range and appropriateness of words.
-- Clarity means how clearly the ideas are expressed.
+SESSION CONTEXT:
+- Scenario: ${state.scenario.title} — pay particular attention to ${scenarioFocus}.
+- ${difficultyNote}${englishOnlyLine}
+
+Analyze ONLY the learner's actual responses below. Every score, mistake, pattern, and example must be grounded in what they actually wrote.
+
+CRITICAL RULES — READ CAREFULLY:
+- Do NOT invent mistakes. If a genuine grammar mistake is not present, "grammar.mistakes" MUST be an empty array [].
+- Never quote the learner as having said something they did not say.
+- Do NOT punish informal, conversational English (contractions, casual phrasing, short natural replies) — that is normal spoken English, not an error.
+- Only include a vocabulary suggestion when a genuinely better, context-appropriate alternative exists — do not replace already-good word choices just to fill the list.
+- Only note a grammar "pattern" if the same type of mistake genuinely repeats more than once in the transcript.
+- For "confidence", use ONLY observable indicators from the transcript: response length, hesitation markers/filler words, repetition, and willingness to elaborate. NEVER make psychological, medical, or personality claims about the learner.
+- Keep every list to a MAXIMUM of 3 items. Fewer, or empty, is correct when there isn't enough genuine material — never pad lists with invented or generic content.
+- Keep tone constructive, specific, and warm throughout — this is a supportive practice partner, not a strict examiner.
+
+SCORING — integers from 0 to 100 for each:
+- fluency: how naturally and continuously ideas flow, including repetition and filler-word use
+- grammar: accuracy of sentence construction, tense, articles, prepositions, subject-verb agreement, etc.
+- vocabulary: range, appropriateness, and variety of vocabulary for the context
+- clarity: how understandable and well-structured the responses are
+- confidence: based only on observable indicators above — not a psychological measurement
+These scores are an AI-generated practice indicator, not a scientifically validated measurement. Justify each score by what's actually in the transcript.
 
 Return ONLY valid JSON in exactly this structure:
 
 {
-  "fluency": 1,
-  "grammar": 1,
-  "vocabulary": 1,
-  "clarity": 1,
-  "wentWell": "Specific positive observation based on the user's actual responses.",
-  "improve": "One specific improvement based on the user's actual responses.",
-  "example": "A short improved example based on something the user actually said."
+  "overall_summary": "One or two sentence summary of the learner's speaking performance this session, referencing something specific they actually said.",
+  "scores": {"fluency":0,"grammar":0,"vocabulary":0,"clarity":0,"confidence":0},
+  "strengths": ["Specific, evidence-based strength."],
+  "grammar": {
+    "mistakes": [{"original":"exact words the learner used","correction":"corrected version","explanation":"brief, simple reason"}],
+    "patterns": ["A grammar pattern that genuinely repeated more than once, if any."]
+  },
+  "vocabulary": {
+    "used_well": ["A word or phrase the learner used effectively, if any."],
+    "suggestions": [{"basic":"a word/phrase the learner used","better":"a stronger, context-appropriate alternative","example":"a short example sentence using the better word"}]
+  },
+  "fluency": {"assessment":"Short, specific assessment.","issues":["A genuine fluency issue, if any."],"tips":["A practical tip."]},
+  "clarity": {"assessment":"Short, specific assessment.","tips":["A practical tip."]},
+  "confidence": {"assessment":"Short, specific assessment based only on observable indicators.","tips":["A practical tip."]},
+  "practice_plan": ["One specific, personalized practice recommendation."]
 }
 `;
 
@@ -318,7 +367,7 @@ Return ONLY valid JSON in exactly this structure:
           {
             role:'user',
             content:
-              `Here are the user's actual responses:\n\n${userResponses}\n\nAnalyze these responses and return the requested JSON.`
+              `Here are the learner's actual responses:\n\n${userResponses}\n\nAnalyze these responses and return the requested JSON.`
           }
         ],
         jsonMode:true
@@ -338,7 +387,7 @@ Return ONLY valid JSON in exactly this structure:
       .replace(/```/g,'')
       .trim();
 
-    fb=JSON.parse(cleaned);
+    fb=sanitizeFeedback(JSON.parse(cleaned));
 
   }catch(e){
     console.error('Feedback generation failed:',e);
@@ -347,43 +396,24 @@ Return ONLY valid JSON in exactly this structure:
     fb=null;
   }
 
-  const valid=
-    fb &&
-    Number.isInteger(Number(fb.fluency)) &&
-    Number.isInteger(Number(fb.grammar)) &&
-    Number.isInteger(Number(fb.vocabulary)) &&
-    Number.isInteger(Number(fb.clarity)) &&
-    Number(fb.fluency)>=1 && Number(fb.fluency)<=10 &&
-    Number(fb.grammar)>=1 && Number(fb.grammar)<=10 &&
-    Number(fb.vocabulary)>=1 && Number(fb.vocabulary)<=10 &&
-    Number(fb.clarity)>=1 && Number(fb.clarity)<=10 &&
-    typeof fb.wentWell==='string' &&
-    fb.wentWell.trim() &&
-    typeof fb.improve==='string' &&
-    fb.improve.trim() &&
-    typeof fb.example==='string' &&
-    fb.example.trim();
-
-  if(valid){
-
-    fb.fluency=Number(fb.fluency);
-    fb.grammar=Number(fb.grammar);
-    fb.vocabulary=Number(fb.vocabulary);
-    fb.clarity=Number(fb.clarity);
+  if(fb){
 
     fb.overall=Math.round(
       (
-        fb.fluency+
-        fb.grammar+
-        fb.vocabulary+
-        fb.clarity
-      )/4*10
-    )/10;
+        fb.scores.fluency+
+        fb.scores.grammar+
+        fb.scores.vocabulary+
+        fb.scores.clarity+
+        fb.scores.confidence
+      )/5
+    );
 
   }else{
 
     // A dynamic fallback based on the user's actual transcript.
-    // This is NOT presented as AI-generated feedback.
+    // This is NOT presented as AI-generated feedback, and it NEVER invents
+    // specific grammar mistakes, patterns, or vocabulary suggestions — only
+    // aggregate, honest observations from response length and count.
     const responseCount=state.transcript.filter(t=>t.role==='user').length;
     const wordCount=userResponses.trim()
       ? userResponses.trim().split(/\s+/).length
@@ -393,31 +423,54 @@ Return ONLY valid JSON in exactly this structure:
       ? Math.round(wordCount/responseCount)
       : 0;
 
+    const short=avgWords<8;
+
     fb={
-      fluency:avgWords>=12?7:avgWords>=7?6:5,
-      grammar:6,
-      vocabulary:avgWords>=15?7:6,
-      clarity:avgWords>=8?7:6,
-      wentWell:
-        `You completed ${responseCount} response${responseCount===1?'':'s'} and communicated your ideas in the conversation.`,
-      improve:
-        avgWords<8
+      overall_summary:
+        `You completed ${responseCount} response${responseCount===1?'':'s'} in this ${DIFFICULTY_LABELS[state.difficulty]||'Intermediate'}-level ${state.scenario.title} conversation. Live AI analysis wasn't available this session, so this is a simulated summary based on response length only.`,
+      scores:{
+        fluency:short?50:avgWords>=12?70:60,
+        grammar:60,
+        vocabulary:avgWords>=15?70:60,
+        clarity:avgWords>=8?70:60,
+        confidence:short?50:avgWords>=12?70:60
+      },
+      strengths:[
+        `You completed ${responseCount} response${responseCount===1?'':'s'} and kept the conversation going.`
+      ],
+      grammar:{mistakes:[],patterns:[]},
+      vocabulary:{used_well:[],suggestions:[]},
+      fluency:{
+        assessment:`Your responses averaged around ${avgWords} word${avgWords===1?'':'s'} each.`,
+        issues:[],
+        tips:[short
           ? 'Try expanding your answers with one or two supporting details.'
-          : 'Try connecting your ideas with more varied sentence structures.',
-      example:
-        avgWords<8
-          ? 'Instead of a short answer, add a reason or example to explain your idea.'
-          : 'I enjoyed the experience because it gave me a chance to learn something new.'
+          : 'Try connecting your ideas with more varied sentence structures.']
+      },
+      clarity:{
+        assessment:'Based on response length and structure only, since live AI analysis wasn\'t available.',
+        tips:[]
+      },
+      confidence:{
+        assessment:short
+          ? `Your responses averaged around ${avgWords} words, on the shorter side.`
+          : `Your responses averaged around ${avgWords} words, showing a willingness to elaborate.`,
+        tips:[]
+      },
+      practice_plan:[short
+        ? 'Next session, try adding one extra sentence with a reason or example each time you answer.'
+        : 'Next session, try linking two ideas together with words like "because" or "which is why" to sound even more natural.']
     };
 
     fb.overall=Math.round(
       (
-        fb.fluency+
-        fb.grammar+
-        fb.vocabulary+
-        fb.clarity
-      )/4*10
-    )/10;
+        fb.scores.fluency+
+        fb.scores.grammar+
+        fb.scores.vocabulary+
+        fb.scores.clarity+
+        fb.scores.confidence
+      )/5
+    );
 
     state.demoMode=true;
   }
@@ -428,8 +481,107 @@ Return ONLY valid JSON in exactly this structure:
   state.view='feedback';
   render();
 }
-function renderFeedback(){const f=state.feedback;app.innerHTML=`<div class="screen">${state.demoMode?`<div class="demo-banner">Demo Mode — this feedback used simulated scoring.</div>`:''}<div class="fb-hero"><div style="font-size:30px">🎉</div><h1>Great job!</h1><p style="color:#666B62;font-size:14.5px">You completed your conversation with Maya.</p><div class="score-ring">${f.overall} / 10</div></div><div class="metrics">${metricCard('Fluency',f.fluency)}${metricCard('Grammar',f.grammar)}${metricCard('Vocabulary',f.vocabulary)}${metricCard('Clarity',f.clarity)}</div><div class="fb-block"><h3>👍 What you did well</h3><p>${escapeHtml(f.wentWell)}</p></div><div class="fb-block"><h3>🎯 One thing to improve</h3><p>${escapeHtml(f.improve)}</p></div><div class="fb-block"><h3>💡 Try saying it this way</h3><p>${escapeHtml(f.example)}</p></div><div class="basis-note">Scores are based on patterns in your written responses during this conversation — not a measurement of pronunciation, tone, accent, confidence, or speaking speed.</div><div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap"><button class="btn-primary" onclick="goSurvey()">Give Feedback</button><button class="btn-secondary" onclick="goScenario()">Practice Again</button></div></div>`}
-function metricCard(label,v){return `<div class="metric"><div class="label">${label}</div><div class="val">${v}/10</div><div class="bar"><div class="bar-fill" style="width:${v*10}%"></div></div></div>`}
+
+// Validates and cleans the model's feedback JSON. Returns null if the core
+// required parts (scores + summary + at least one strength + a practice
+// plan) aren't present — this is what triggers the honest, non-hallucinating
+// fallback above rather than showing malformed or invented feedback. Every
+// optional sub-list defaults to [] rather than failing validation, since an
+// empty list ("no genuine mistakes found") is a valid, expected result.
+function sanitizeFeedback(fb){
+  if(!fb||typeof fb!=='object')return null;
+
+  const s=fb.scores;
+  const scoreOk=k=>Number.isInteger(Number(s?.[k]))&&Number(s[k])>=0&&Number(s[k])<=100;
+  if(!s||!['fluency','grammar','vocabulary','clarity','confidence'].every(scoreOk))return null;
+
+  const scores={
+    fluency:Number(s.fluency),
+    grammar:Number(s.grammar),
+    vocabulary:Number(s.vocabulary),
+    clarity:Number(s.clarity),
+    confidence:Number(s.confidence)
+  };
+
+  const overall_summary=typeof fb.overall_summary==='string'?fb.overall_summary.trim():'';
+
+  const strList=(arr,max)=>Array.isArray(arr)
+    ?arr.filter(x=>typeof x==='string'&&x.trim()).map(x=>x.trim()).slice(0,max)
+    :[];
+
+  const strengths=strList(fb.strengths,3);
+  const practice_plan=strList(fb.practice_plan,3);
+
+  if(!overall_summary||!strengths.length||!practice_plan.length)return null;
+
+  const mistakeList=(arr,max)=>Array.isArray(arr)
+    ?arr.filter(x=>x&&typeof x.original==='string'&&x.original.trim()&&typeof x.correction==='string'&&x.correction.trim()&&typeof x.explanation==='string'&&x.explanation.trim())
+        .map(x=>({original:x.original.trim(),correction:x.correction.trim(),explanation:x.explanation.trim()}))
+        .slice(0,max)
+    :[];
+
+  const suggestionList=(arr,max)=>Array.isArray(arr)
+    ?arr.filter(x=>x&&typeof x.basic==='string'&&x.basic.trim()&&typeof x.better==='string'&&x.better.trim())
+        .map(x=>({basic:x.basic.trim(),better:x.better.trim(),example:typeof x.example==='string'?x.example.trim():''}))
+        .slice(0,max)
+    :[];
+
+  const assessmentOf=obj=>typeof obj?.assessment==='string'?obj.assessment.trim():'';
+
+  return{
+    overall_summary,
+    scores,
+    strengths,
+    grammar:{
+      mistakes:mistakeList(fb.grammar&&fb.grammar.mistakes,3),
+      patterns:strList(fb.grammar&&fb.grammar.patterns,3)
+    },
+    vocabulary:{
+      used_well:strList(fb.vocabulary&&fb.vocabulary.used_well,3),
+      suggestions:suggestionList(fb.vocabulary&&fb.vocabulary.suggestions,3)
+    },
+    fluency:{
+      assessment:assessmentOf(fb.fluency),
+      issues:strList(fb.fluency&&fb.fluency.issues,3),
+      tips:strList(fb.fluency&&fb.fluency.tips,3)
+    },
+    clarity:{
+      assessment:assessmentOf(fb.clarity),
+      tips:strList(fb.clarity&&fb.clarity.tips,3)
+    },
+    confidence:{
+      assessment:assessmentOf(fb.confidence),
+      tips:strList(fb.confidence&&fb.confidence.tips,3)
+    },
+    practice_plan
+  };
+}
+
+function renderFeedback(){
+  const f=state.feedback;
+
+  const bulletBlock=(icon,title,items)=>!items.length?'':`<div class="fb-block"><h3>${icon} ${title}</h3><ul class="fb-list">${items.map(i=>`<li>${escapeHtml(i)}</li>`).join('')}</ul></div>`;
+
+  // A compact, always-visible card for one skill's assessment + tips.
+  const skillBlock=(icon,title,skill)=>{
+    if(!skill.assessment&&!skill.tips.length)return'';
+    return `<div class="fb-block"><h3>${icon} ${title}</h3>${skill.assessment?`<p>${escapeHtml(skill.assessment)}</p>`:''}${skill.tips.length?`<ul class="fb-list" style="margin-top:8px">${skill.tips.map(t=>`<li>${escapeHtml(t)}</li>`).join('')}</ul>`:''}</div>`;
+  };
+
+  const mistakeCard=item=>`<div class="correction-card"><div class="corr-row"><span class="corr-tag orig">Original</span><span>${escapeHtml(item.original)}</span></div><div class="corr-row"><span class="corr-tag imp">Correction</span><span>${escapeHtml(item.correction)}</span></div><p class="corr-expl">${escapeHtml(item.explanation)}</p></div>`;
+  const vocabCard=item=>`<div class="correction-card"><div class="corr-row"><span class="corr-tag orig">Instead of</span><span>${escapeHtml(item.basic)}</span></div><div class="corr-row"><span class="corr-tag imp">Try</span><span>${escapeHtml(item.better)}</span></div>${item.example?`<p class="corr-expl">${escapeHtml(item.example)}</p>`:''}</div>`;
+
+  const grammarCount=f.grammar.mistakes.length+f.grammar.patterns.length;
+  const grammarBody=`${f.grammar.mistakes.map(mistakeCard).join('')}${f.grammar.patterns.length?`<div><div class="corr-tag orig" style="display:inline-block;margin-bottom:6px">Repeated pattern</div><ul class="fb-list">${f.grammar.patterns.map(p=>`<li>${escapeHtml(p)}</li>`).join('')}</ul></div>`:''}`;
+
+  const vocabCount=f.vocabulary.used_well.length+f.vocabulary.suggestions.length;
+  const vocabBody=`${f.vocabulary.used_well.length?`<div class="chip-row">${f.vocabulary.used_well.map(w=>`<span class="chip">${escapeHtml(w)}</span>`).join('')}</div>`:''}${f.vocabulary.suggestions.map(vocabCard).join('')}`;
+
+  const detailsBlock=(icon,title,count,bodyHtml)=>!count?'':`<details class="fb-details"><summary>${icon} ${title} (${count})</summary><div class="fb-details-body">${bodyHtml}</div></details>`;
+
+  app.innerHTML=`<div class="screen">${state.demoMode?`<div class="demo-banner">Demo Mode — this feedback used simulated scoring.</div>`:''}<div class="fb-hero"><div style="font-size:30px">🎉</div><h1>Great job!</h1><p style="color:#666B62;font-size:14.5px;max-width:52ch;margin:0 auto">${escapeHtml(f.overall_summary)}</p><div class="score-ring">${f.overall} / 100</div></div><div class="metrics">${metricCard('Fluency',f.scores.fluency)}${metricCard('Grammar',f.scores.grammar)}${metricCard('Vocabulary',f.scores.vocabulary)}${metricCard('Clarity',f.scores.clarity)}${metricCard('Confidence',f.scores.confidence)}</div>${bulletBlock('👍','What you did well',f.strengths)}${skillBlock('🌊','Fluency',f.fluency)}${skillBlock('🔍','Clarity',f.clarity)}${skillBlock('💪','Confidence',f.confidence)}${detailsBlock('📝','Grammar',grammarCount,grammarBody)}${detailsBlock('📚','Vocabulary',vocabCount,vocabBody)}${bulletBlock('🧭','What to practice next',f.practice_plan)}<div class="basis-note">Scores (0-100) and corrections are an AI-generated practice indicator based only on patterns in your actual responses this session — not pronunciation, accent, or any psychological or medical assessment. Confidence reflects observable things like response length and hesitation, not how you feel.</div><div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap"><button class="btn-primary" onclick="goSurvey()">Give Feedback</button><button class="btn-secondary" onclick="goScenario()">Practice Again</button></div></div>`;
+}
+function metricCard(label,v){return `<div class="metric"><div class="label">${label}</div><div class="val">${v}/100</div><div class="bar"><div class="bar-fill" style="width:${v}%"></div></div></div>`}
 function goSurvey(){state.view='survey';render()}
 function renderSurvey(){app.innerHTML=`<div class="screen"><h2 style="font-size:22px;margin:0 0 4px">How was your session?</h2><p style="color:#666B62;font-size:14.5px">Your answers help us improve SpeakMate.</p><div style="margin-top:18px"><div style="font-weight:600;font-size:14px">How useful was this session?</div><div class="stars">${[1,2,3,4,5].map(i=>`<span class="${state.survey.stars>=i?'active':''}" onclick="setStars(${i})">★</span>`).join('')}</div></div><div><div style="font-weight:600;font-size:14px">Would you practice with SpeakMate again?</div><div class="radio-row">${['Yes','Maybe','No'].map(x=>`<button class="${state.survey.again===x?'sel':''}" onclick="setAgain('${x}')">${x}</button>`).join('')}</div></div><div><div style="font-weight:600;font-size:14px;margin-bottom:6px">What should we improve?</div><textarea class="survey-box" placeholder="Optional — tell us anything." oninput="state.survey.comment=this.value">${escapeHtml(state.survey.comment)}</textarea></div><button class="btn-primary" ${(!state.survey.stars||!state.survey.again)?'disabled':''} onclick="submitSurvey()">Submit</button></div>`}
 function setStars(i){state.survey.stars=i;render()}function setAgain(v){state.survey.again=v;render()}
